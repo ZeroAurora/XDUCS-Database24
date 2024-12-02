@@ -1,0 +1,10 @@
+appId: com.electron.app
+productName: xducs-database24
+directories:
+  buildResources: build
+files:
+  - 'out/**/*'
+  - 'resources/**/*'
+asarUnpack:
+  - resources/**
+npmRebuild: false

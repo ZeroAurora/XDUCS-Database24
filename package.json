@@ -1,0 +1,55 @@
+{
+  "name": "xducs-database24",
+  "version": "1.0.0",
+  "packageManager": "pnpm@9.14.3+sha512.c0f53ee99477ed969b82b289ad011a5d16bf1623c957e7f29eabe8d0c00b574c29b8c7f54f6c67ee710c73f285c8154d07ce44b46fe2c0eeb476a90441bac371",
+  "description": "An Electron application with Vue and TypeScript",
+  "author": "example.com",
+  "homepage": "https://electron-vite.org",
+  "main": "./out/main/index.js",
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint . --fix",
+    "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
+    "typecheck:web": "vue-tsc --noEmit -p tsconfig.web.json --composite false",
+    "typecheck": "npm run typecheck:node && npm run typecheck:web",
+    "start": "electron-vite preview",
+    "dev": "electron-vite dev",
+    "build": "npm run typecheck && electron-vite build",
+    "postinstall": "electron-builder install-app-deps",
+    "build:unpack": "npm run build && electron-builder --dir",
+    "build:win": "npm run build && electron-builder --win",
+    "build:mac": "npm run build && electron-builder --mac",
+    "build:linux": "npm run build && electron-builder --linux"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^3.11.2",
+    "@tsconfig/recommended": "^1.0.8",
+    "@types/node": "^22.10.1",
+    "@unocss/eslint-plugin": "^0.64.1",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/eslint-config-prettier": "^10.1.0",
+    "@vue/eslint-config-typescript": "^14.1.4",
+    "@vue/tsconfig": "^0.7.0",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "electron-vite": "^2.3.0",
+    "eslint": "^9.16.0",
+    "eslint-plugin-format": "^0.1.2",
+    "prettier": "^3.4.1",
+    "typescript": "^5.7.2",
+    "unocss": "0.65.0-beta.3",
+    "vite": "^6.0.1",
+    "vue": "^3.5.13",
+    "vue-tsc": "^2.1.10"
+  },
+  "pnpm": {
+    "overrides": {
+      "typescript": "~5.6"
+    },
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "vite": "6"
+      }
+    }
+  }
+}
