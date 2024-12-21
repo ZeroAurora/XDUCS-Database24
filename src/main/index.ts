@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import process from 'node:process'
 import { app, BrowserWindow, shell } from 'electron'
+import { registerDbIpcs } from './db'
 
 function createWindow(): void {
   // Create the browser window.
@@ -18,6 +19,8 @@ function createWindow(): void {
     return { action: 'deny' }
   })
 
+  registerDbIpcs()
+
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
   if (!app.isPackaged && process.env.ELECTRON_RENDERER_URL) {
@@ -30,18 +33,8 @@ function createWindow(): void {
 
 app.whenReady().then(() => {
   createWindow()
-
-  app.on('activate', () => {
-    // On macOS it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0)
-      createWindow()
-  })
 })
 
-// Quit when all windows are closed, except on macOS.
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
+  app.quit()
 })

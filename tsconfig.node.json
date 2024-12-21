@@ -1,7 +1,10 @@
 {
   "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
-    "composite": true
+    "composite": true,
+    "paths": {
+      "@main/*": ["./src/main/*"]
+    }
   },
-  "include": ["./*", "src/main/**/*", "src/preload/**/*"]
+  "include": ["./*", "src/main/**/*"]
 }

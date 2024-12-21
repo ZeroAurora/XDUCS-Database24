@@ -1,6 +1,18 @@
-import { contextBridge } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 
-// Custom APIs for renderer
-const api = {}
+export const db = {
+  connected: async (): Promise<boolean> => {
+    return await ipcRenderer.invoke('db:connected')
+  },
+  init: async (host: string, port: number, user: string, password: string, database: string): Promise<boolean> => {
+    return await ipcRenderer.invoke('db:init', { host, port, user, password, database })
+  },
+  close: async (): Promise<void> => {
+    return await ipcRenderer.invoke('db:close')
+  },
+  execute: async (sql: string, values: any[] = []): Promise<unknown[]> => {
+    return await ipcRenderer.invoke('db:execute', { sql, values })
+  },
+}
 
-contextBridge.exposeInMainWorld('api', api)
+contextBridge.exposeInMainWorld('db', db)
