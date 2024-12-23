@@ -9,7 +9,7 @@ function onLogoutClick() {
 
 <template>
   <div class="w-full h-full flex justify-center items-center">
-    <NResult status="success" title="Logged in as Admin">
+    <NResult status="success" title="Logged in as user">
       <template #footer>
         <NButton type="primary" @click="onLogoutClick">
           Logout

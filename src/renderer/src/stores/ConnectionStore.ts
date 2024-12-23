@@ -30,7 +30,7 @@ export const useConnectionStore = defineStore('connection', {
     },
 
     async getRole() {
-      const role = (await this.execute('SELECT CURRENT_ROLE() AS role;'))[0].role
+      const role: string = ((await this.execute('SELECT CURRENT_ROLE() AS role;'))[0] as any).role
       if (role === '`Admin`@`%`') {
         this.role = 'Admin'
       }

@@ -12,7 +12,7 @@ const router = createRouter({
       component: () => import('./views/admin/IndexView.vue'),
     },
     {
-      path: '/admin/table/:provider',
+      path: '/admin/table',
       component: () => import('./views/admin/TableView.vue'),
     },
     {

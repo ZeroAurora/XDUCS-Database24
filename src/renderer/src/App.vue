@@ -3,6 +3,7 @@ import AdminNavigation from '@renderer/components/AdminNavigation.vue'
 import router from '@renderer/router'
 import { useConnectionStore } from '@renderer/stores/ConnectionStore'
 
+import { NConfigProvider } from 'naive-ui'
 import { watchEffect } from 'vue'
 import { RouterView } from 'vue-router'
 import UserNavigation from './components/UserNavigation.vue'
@@ -17,11 +18,13 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="flex h-screen w-screen">
-    <div v-if="connectionStore.connected" class="flex-none w-240px border-0 border-r border-solid border-gray-200">
-      <AdminNavigation v-if="connectionStore.role === 'Admin'" />
-      <UserNavigation v-else-if="connectionStore.role === 'User'" />
+  <NConfigProvider>
+    <div class="flex h-screen w-screen">
+      <div v-if="connectionStore.connected" class="flex-none w-240px border-0 border-r border-solid border-gray-200">
+        <AdminNavigation v-if="connectionStore.role === 'Admin'" />
+        <UserNavigation v-else-if="connectionStore.role === 'User'" />
+      </div>
+      <RouterView />
     </div>
-    <RouterView class="flex-auto" />
-  </div>
+  </NConfigProvider>
 </template>
