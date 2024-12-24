@@ -1,34 +1,9 @@
 # xducs-database24
 
-An Electron application with Vue and TypeScript
+一人干起全队活，最后栽在队友埋的坑里。
 
-## Recommended IDE Setup
+出去别他妈说这玩意是我做的。
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin)
+## LICENSE
 
-## Project Setup
-
-### Install
-
-```bash
-$ pnpm install
-```
-
-### Development
-
-```bash
-$ pnpm dev
-```
-
-### Build
-
-```bash
-# For windows
-$ pnpm build:win
-
-# For macOS
-$ pnpm build:mac
-
-# For Linux
-$ pnpm build:linux
-```
+All rights reserved. Specifically, you can use this code only for reference purposes. Any kind of direct copying inside your homework or assignment is strictly prohibited.
