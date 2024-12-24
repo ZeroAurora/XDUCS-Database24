@@ -1,6 +1,6 @@
 import type { DataService } from '.'
 
-interface FinalJudgingData {
+export interface FinalJudgingData {
   RecordID: number
   TeamID: string
   ExpertID: string
@@ -38,6 +38,10 @@ export class FinalJudgingDataService implements DataService<FinalJudgingData> {
       return null
     }
     return result[0] as FinalJudgingData
+  }
+
+  async getDataByTeamID(teamID: string): Promise<FinalJudgingData[]> {
+    return await window.db.execute('SELECT * FROM FinalJudging WHERE TeamID = ?;', [teamID]) as FinalJudgingData[]
   }
 
   async createData(data: FinalJudgingData): Promise<void> {

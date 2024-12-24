@@ -2,53 +2,62 @@
 import type { DataProviderName } from '@renderer/lib/dataProvider/tables'
 import type { Ref } from 'vue'
 import { useTableDataProvider } from '@renderer/composables/TableDataProvider'
-import { NButton, NForm, NFormItem, NInput, NModal } from 'naive-ui'
-import { ref, toRefs, watchEffect } from 'vue'
+import { NAlert, NButton, NForm, NFormItem, NFormItemGi, NGrid, NInput, NModal } from 'naive-ui'
+import { ref, watchEffect } from 'vue'
 
 const props = defineProps<{
   dataProviderName: DataProviderName
-  id?: string
+  selectedId?: string
 }>()
 const emit = defineEmits(['done'])
 
-const propsRefs = toRefs(props)
-
-const { schema, getDataByID, updateDataByID, createData } = useTableDataProvider(propsRefs.dataProviderName)
+const { schema, getDataByID, updateDataByID, createData } = useTableDataProvider(() => props.dataProviderName)
 
 const data: Ref<Record<string, any>> = ref({})
+const error = ref('')
 
 watchEffect(async () => {
-  if (props.id) {
-    data.value = await getDataByID(props.id) ?? {}
+  if (props.selectedId) {
+    data.value = await getDataByID(props.selectedId) ?? {}
   }
   else {
     data.value = {}
   }
 })
 
-function onSaveClick() {
-  if (props.id) {
-    updateDataByID(props.id, data.value)
+async function onSaveClick() {
+  try {
+    if (props.selectedId) {
+      await updateDataByID(props.selectedId, data.value)
+    }
+    else {
+      await createData(data.value)
+    }
+    emit('done')
   }
-  else {
-    createData(data.value)
+  catch (err: any) {
+    error.value = err.message
+    console.error(error)
   }
-  emit('done')
 }
 </script>
 
 <template>
-  <NModal class="w-xl max-w-90vw" preset="card" title="Create" size="huge" aria-modal="true">
+  <NModal class="max-w-90vw w-800px" preset="card" title="Create" size="huge" aria-modal="true">
     <div class="flex flex-col gap-4">
+      <NAlert v-if="error" type="error" title="Error">
+        {{ error }}
+      </NAlert>
       <NForm :model="data" :label-width="80">
-        <NFormItem v-for="item in schema" :key="item.key" :label="item.title">
-          <NInput v-model:value="data[item.key]" />
-        </NFormItem>
-        <NFormItem>
-          <NButton type="primary" @click="onSaveClick">
-            Save
-          </NButton>
-        </NFormItem>
+        <NGrid :cols="2" :x-gap="8" :y-gap="8">
+          <NFormItemGi v-for="item in schema" :key="item.key" :label="item.title">
+            <NInput type="text" v-model:value="data[item.key]" :disabled="item.primary && !!selectedId" />
+          </NFormItemGi>
+          <NFormItem />
+        </NGrid>
+        <NButton type="primary" @click="onSaveClick">
+          Save
+        </NButton>
       </NForm>
     </div>
   </NModal>

@@ -91,13 +91,9 @@ CREATE TABLE FinalJudging (
 -- 创建获奖证书表
 CREATE TABLE AwardCertificate (
     CertificateID VARCHAR(20) PRIMARY KEY,
-    TrackType ENUM('A', 'B') NOT NULL,
-    AwardRank ENUM('1', '2', '3') NOT NULL,
-    University VARCHAR(50) NOT NULL,
-    StudentName VARCHAR(50) NOT NULL,
-    StudentUniversity VARCHAR(50) NOT NULL,
-    TeacherName VARCHAR(50) NOT NULL,
-    TeacherUniversity VARCHAR(50) NOT NULL
+    TeamID VARCHAR(7) NOT NULL,
+    AwardRank ENUM('0', '1', '2', '3') NOT NULL,
+    FOREIGN KEY (TeamID) REFERENCES Team(TeamID)
 );
 
 -- 添加唯一性约束
@@ -152,7 +148,7 @@ JOIN TeamMember tm ON t.TeamID = tm.TeamID;
 CREATE VIEW TeamJudgingInfo AS
 SELECT 
     tm.TeamID AS TeamID,
-    tm.Name AS TeamName,
+    tm.TeamName AS TeamName,
     tm.TrackType AS TrackType,
     tm.SelectedTopicID AS SelectedTopicID,
     pj.Score AS PreliminaryScore,
@@ -161,21 +157,8 @@ FROM Team tm
 JOIN PreliminaryJudging pj ON tm.TeamID = pj.TeamID
 JOIN FinalJudging fj ON tm.TeamID = fj.TeamID;
 
-CREATE VIEW UserAwardInfo AS
-SELECT 
-    ac.CertificateID,
-    ac.TrackType,
-    ac.AwardRank,
-    ac.University,
-    ac.StudentName,
-    ac.StudentUniversity,
-    ac.TeacherName,
-    ac.TeacherUniversity
-FROM AwardCertificate ac;
-
 GRANT SELECT ON UserTeamInfo TO User;
-GRANT SELECT ON UserJudgingInfo TO User;
-GRANT SELECT ON UserAwardInfo TO User;
+GRANT SELECT ON TeamJudgingInfo TO User;
 
 -- 创建管理员用户
 CREATE USER 'admin_user' IDENTIFIED BY 'admin_password';

@@ -1,6 +1,6 @@
 import type { DataService } from '.'
 
-interface TopicBData {
+export interface TopicBData {
   TeamID: string
   TopicName: string
   University: string

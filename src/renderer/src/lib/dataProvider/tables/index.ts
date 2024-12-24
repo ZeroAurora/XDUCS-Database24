@@ -1,11 +1,12 @@
 import type { DataTableColumn } from 'naive-ui'
-import { AwardCertificateDataService } from './AwardCertificateData'
+import { AwardCertificateService } from './AwardCertificateData'
 import { ExpertDataService } from './ExpertData'
 import { FinalJudgingDataService } from './FinalJudgingData'
 import { PreliminaryJudgingDataService } from './PreliminaryJudgingData'
 import { TeacherDataService } from './TeacherData'
 import { TeamDataService } from './TeamData'
 import { TeamMemberDataService } from './TeamMemberData'
+import { TeamTeacherDataService } from './TeamTeacher'
 import { TopicADataService } from './TopicAData'
 import { TopicBDataService } from './TopicBData'
 
@@ -18,28 +19,25 @@ export interface DataService<T> {
   deleteData: (id: string) => Promise<void>
 }
 
-const dataProvider = {
-  AwardCertificate: new AwardCertificateDataService(),
+export const dataProviders = {
+  AwardCertificate: new AwardCertificateService(),
   Expert: new ExpertDataService(),
   FinalJudging: new FinalJudgingDataService(),
   PreliminaryJudging: new PreliminaryJudgingDataService(),
   Teacher: new TeacherDataService(),
   Team: new TeamDataService(),
   TeamMember: new TeamMemberDataService(),
+  TeamTeacher: new TeamTeacherDataService(),
   TopicA: new TopicADataService(),
   TopicB: new TopicBDataService(),
 }
 
-export const dataProviderSelectorOptions = Object.keys(dataProvider).map(key => ({
+export const dataProviderSelectorOptions = Object.keys(dataProviders).map(key => ({
   label: key,
   value: key,
 }))
 
-export type DataProviderName = keyof typeof dataProvider
-
-export function getDataProvider(name: DataProviderName): DataService<any> {
-  return dataProvider[name]
-}
+export type DataProviderName = keyof typeof dataProviders
 
 export function createColumns(provider: DataService<any>): DataTableColumn[] {
   return [

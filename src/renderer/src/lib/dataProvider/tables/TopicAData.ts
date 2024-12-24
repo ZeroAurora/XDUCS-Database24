@@ -1,6 +1,6 @@
 import type { DataService } from '.'
 
-interface TopicAData {
+export interface TopicAData {
   TopicID: string
   TopicName: string
   Company: string

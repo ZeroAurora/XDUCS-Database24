@@ -1,6 +1,6 @@
 import type { DataService } from '.'
 
-interface TeacherData {
+export interface TeacherData {
   TeacherID: string
   Name: string
   Phone: string

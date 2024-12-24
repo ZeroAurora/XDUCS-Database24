@@ -8,15 +8,18 @@ importers:
 
   .:
     dependencies:
+      csv-parse:
+        specifier: ^5.6.0
+        version: 5.6.0
+      highlight.js:
+        specifier: ^11.11.0
+        version: 11.11.0
       mysql2:
         specifier: ^3.11.5
         version: 3.11.5
       naive-ui:
         specifier: ^2.40.4
         version: 2.40.4(vue@3.5.13(typescript@5.6.3))
-      node-xlsx:
-        specifier: ^0.24.0
-        version: 0.24.0
       pinia:
         specifier: ^2.3.0
         version: 2.3.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))
@@ -1773,6 +1776,9 @@ packages:
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
+  csv-parse@5.6.0:
+    resolution: {integrity: sha512-l3nz3euub2QMg5ouu5U09Ew9Wf6/wQ8I++ch1loQ0ljmzhmfZYrH9fflS22i/PQEvsPvxCwxgz5q7UB8K1JO4Q==}
+
   date-fns-tz@3.2.0:
     resolution: {integrity: sha512-sg8HqoTEulcbbbVXeg84u5UnlsQa8GS5QXMqjjYIhS4abEVVKIUwe0/l/UhrZdKaL/W5eWZNlbTeEIiOXTcsBQ==}
     peerDependencies:
@@ -3109,11 +3115,6 @@ packages:
   node-releases@2.0.19:
     resolution: {integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==}
 
-  node-xlsx@0.24.0:
-    resolution: {integrity: sha512-1olwK48XK9nXZsyH/FCltvGrQYvXXZuxVitxXXv2GIuRm51aBi1+5KwR4rWM4KeO61sFU+00913WLZTD+AcXEg==}
-    engines: {node: '>=10.0.0'}
-    hasBin: true
-
   nopt@6.0.0:
     resolution: {integrity: sha512-ZwLpbTgdhuZUnZzjd7nb1ZV+4DoiC6/sfiVKok72ym/4Tlf+DFdlHYmT2JPmcNNWV6Pi3SDf1kT+A4r9RTuT9g==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
@@ -3968,12 +3969,6 @@ packages:
 
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
-
-  xlsx@https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz:
-    resolution: {tarball: https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz}
-    version: 0.20.2
-    engines: {node: '>=0.8'}
-    hasBin: true
 
   xml-name-validator@4.0.0:
     resolution: {integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==}
@@ -5805,6 +5800,8 @@ snapshots:
 
   csstype@3.1.3: {}
 
+  csv-parse@5.6.0: {}
+
   date-fns-tz@3.2.0(date-fns@3.6.0):
     dependencies:
       date-fns: 3.6.0
@@ -7520,10 +7517,6 @@ snapshots:
 
   node-releases@2.0.19: {}
 
-  node-xlsx@0.24.0:
-    dependencies:
-      xlsx: https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz
-
   nopt@6.0.0:
     dependencies:
       abbrev: 1.1.1
@@ -8417,8 +8410,6 @@ snapshots:
       strip-ansi: 7.1.0
 
   wrappy@1.0.2: {}
-
-  xlsx@https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz: {}
 
   xml-name-validator@4.0.0: {}
 

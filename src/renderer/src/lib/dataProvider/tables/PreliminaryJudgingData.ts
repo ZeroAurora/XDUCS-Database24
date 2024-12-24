@@ -1,6 +1,6 @@
 import type { DataService } from '.'
 
-interface PreliminaryJudgingData {
+export interface PreliminaryJudgingData {
   RecordID: number
   TeamID: string
   ExpertID: string

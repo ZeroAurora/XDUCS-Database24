@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import router from '@renderer/router'
 import { useConnectionStore } from '@renderer/stores/ConnectionStore'
-import { NButton, NCard, NInput, NInputNumber } from 'naive-ui'
+import { NButton, NCard, NInput, NInputNumber, useMessage } from 'naive-ui'
 
+const naiveMessage = useMessage()
 const connectionStore = useConnectionStore()
 
 async function connect() {
@@ -11,7 +12,23 @@ async function connect() {
     if (connectionStore.role === 'Admin') {
       router.push('/admin')
     }
+    else if (connectionStore.role === 'User') {
+      router.push('/user')
+    }
   }
+  else {
+    naiveMessage.error('Connect failed')
+  }
+}
+
+async function onFillAdminAccount() {
+  connectionStore.user = 'admin_user'
+  connectionStore.password = 'admin_password'
+}
+
+async function onFillUserAccount() {
+  connectionStore.user = 'regular_user'
+  connectionStore.password = 'user_password'
 }
 </script>
 
@@ -23,9 +40,19 @@ async function connect() {
       <NInput v-model:value="connectionStore.user" placeholder="User" />
       <NInput v-model:value="connectionStore.password" placeholder="Password" type="password" />
       <NInput v-model:value="connectionStore.database" placeholder="Database" />
-      <NButton @click="connect">
-        Connect
-      </NButton>
+      <template #action>
+        <div class="flex gap-4">
+          <NButton @click="onFillAdminAccount">
+            Fill Admin Account
+          </NButton>
+          <NButton @click="onFillUserAccount">
+            Fill User Account
+          </NButton>
+          <NButton type="primary" @click="connect">
+            Connect
+          </NButton>
+        </div>
+      </template>
     </NCard>
   </div>
 </template>

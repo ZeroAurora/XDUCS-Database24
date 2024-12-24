@@ -13,6 +13,9 @@ export const db = {
   execute: async (sql: string, values: any[] = []): Promise<unknown[]> => {
     return await ipcRenderer.invoke('db:execute', { sql, values })
   },
+  importCsv: async (tableName: string): Promise<boolean> => {
+    return await ipcRenderer.invoke('db:importCsv', { tableName })
+  },
 }
 
 contextBridge.exposeInMainWorld('db', db)

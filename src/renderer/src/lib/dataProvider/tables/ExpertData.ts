@@ -1,6 +1,6 @@
 import type { DataService } from '.'
 
-interface ExpertData {
+export interface ExpertData {
   ExpertID: string
   Name: string
   Phone: string

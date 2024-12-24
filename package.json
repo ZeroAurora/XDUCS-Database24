@@ -21,9 +21,10 @@
     "build:linux": "npm run build && electron-builder --linux"
   },
   "dependencies": {
+    "csv-parse": "^5.6.0",
+    "highlight.js": "^11.11.0",
     "mysql2": "^3.11.5",
     "naive-ui": "^2.40.4",
-    "node-xlsx": "^0.24.0",
     "pinia": "^2.3.0",
     "vue-router": "^4.5.0"
   },

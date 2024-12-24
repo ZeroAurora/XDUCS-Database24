@@ -1,16 +1,16 @@
 import type { MaybeRefOrGetter, Ref } from 'vue'
 import type { DataProviderName } from '../lib/dataProvider/tables'
 import { ref, toValue, watch } from 'vue'
-import { createColumns, getDataProvider, getTableData } from '../lib/dataProvider/tables'
+import { createColumns, dataProviders, getTableData } from '../lib/dataProvider/tables'
 
 export function useTableDataProvider(nameRefOrGetter: MaybeRefOrGetter<DataProviderName>) {
-  let provider: ReturnType<typeof getDataProvider>
+  let provider: typeof dataProviders[DataProviderName]
   const columns: Ref<ReturnType<typeof createColumns>> = ref([])
   const data: Ref<Awaited<ReturnType<typeof getTableData>>> = ref([])
   const schema: Ref<typeof provider.schema> = ref([])
 
   watch(() => toValue(nameRefOrGetter), async (name) => {
-    provider = getDataProvider(name)
+    provider = dataProviders[name]
 
     columns.value = createColumns(provider)
     data.value = await getTableData(provider)

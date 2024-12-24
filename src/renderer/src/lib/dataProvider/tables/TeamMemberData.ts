@@ -1,6 +1,6 @@
 import type { DataService } from '.'
 
-interface TeamMemberData {
+export interface TeamMemberData {
   MemberID: number
   TeamID: string
   Name: string

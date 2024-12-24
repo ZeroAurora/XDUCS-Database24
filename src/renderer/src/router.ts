@@ -16,6 +16,14 @@ const router = createRouter({
       component: () => import('./views/admin/TableView.vue'),
     },
     {
+      path: '/user',
+      component: () => import('./views/user/IndexView.vue'),
+    },
+    {
+      path: '/user/queryTeam',
+      component: () => import('./views/user/QueryTeamView.vue'),
+    },
+    {
       path: '/common/sql',
       component: () => import('./views/common/SqlExecutionView.vue'),
     },

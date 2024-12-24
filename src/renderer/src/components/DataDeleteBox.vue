@@ -6,11 +6,16 @@ import { ref } from 'vue';
 
 const props = defineProps<{
   dataProviderName: DataProviderName
+  selectedId: string
 }>()
+const emit = defineEmits(['done'])
 
-const dataProvider = useTableDataProvider(props.dataProviderName)
+const { deleteData } = useTableDataProvider(() => props.dataProviderName)
 
-
+function onDeleteClick() {
+  deleteData(props.selectedId)
+  emit('done')
+}
 </script>
 
 <template>
@@ -24,5 +29,6 @@ const dataProvider = useTableDataProvider(props.dataProviderName)
     content="Are you sure you want to delete this data?"
     positive-text="Yes"
     negative-text="No"
+    @positive-click="onDeleteClick"
   />
 </template>
