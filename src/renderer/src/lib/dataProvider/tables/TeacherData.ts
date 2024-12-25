@@ -41,7 +41,8 @@ export class TeacherDataService implements DataService<TeacherData> {
   }
 
   async createData(data: TeacherData): Promise<void> {
-    await window.db.execute('INSERT INTO Teacher (Name, Phone, University) VALUES (?, ?, ?);', [
+    await window.db.execute('INSERT INTO Teacher (TeacherID, Name, Phone, University) VALUES (?, ?, ?, ?);', [
+      data.TeacherID,
       data.Name,
       data.Phone,
       data.University,

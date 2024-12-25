@@ -44,7 +44,8 @@ export class AwardCertificateService implements DataService<AwardCertificateData
   }
 
   async createData(data: AwardCertificateData): Promise<void> {
-    await window.db.execute('INSERT INTO AwardCertificate (AwardRank, TeamID) VALUES (?, ?, ?);', [
+    await window.db.execute('INSERT INTO AwardCertificate (CertificateID, AwardRank, TeamID) VALUES (?, ?, ?);', [
+      data.CertificateID,
       data.AwardRank,
       data.TeamID,
     ])

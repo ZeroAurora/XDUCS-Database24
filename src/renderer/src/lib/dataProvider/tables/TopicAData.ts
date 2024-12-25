@@ -36,7 +36,8 @@ export class TopicADataService implements DataService<TopicAData> {
   }
 
   async createData(data: TopicAData): Promise<void> {
-    await window.db.execute('INSERT INTO TopicA (TopicName, Company) VALUES (?, ?);', [
+    await window.db.execute('INSERT INTO TopicA (TopicID, TopicName, Company) VALUES (?, ?, ?);', [
+      data.TopicID,
       data.TopicName,
       data.Company,
     ])

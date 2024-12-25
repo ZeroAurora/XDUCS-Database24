@@ -56,7 +56,8 @@ export class TeamMemberDataService implements DataService<TeamMemberData> {
   }
 
   async createData(data: TeamMemberData): Promise<void> {
-    await window.db.execute('INSERT INTO TeamMember (TeamID, Name, Gender, Phone, University, Role) VALUES (?, ?, ?, ?, ?, ?);', [
+    await window.db.execute('INSERT INTO TeamMember (MemberID, TeamID, Name, Gender, Phone, University, Role) VALUES (?, ?, ?, ?, ?, ?, ?);', [
+      data.MemberID,
       data.TeamID,
       data.Name,
       data.Gender,

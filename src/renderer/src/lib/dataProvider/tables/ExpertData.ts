@@ -56,7 +56,8 @@ export class ExpertDataService implements DataService<ExpertData> {
   }
 
   async createData(data: ExpertData): Promise<void> {
-    await window.db.execute('INSERT INTO Expert (Name, Phone, Email, University, Title, ResearchArea) VALUES (?, ?, ?, ?, ?, ?);', [
+    await window.db.execute('INSERT INTO Expert (ExpertID, Name, Phone, Email, University, Title, ResearchArea) VALUES (?, ?, ?, ?, ?, ?, ?);', [
+      data.ExpertID,
       data.Name,
       data.Phone,
       data.Email,

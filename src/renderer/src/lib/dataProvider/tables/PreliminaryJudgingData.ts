@@ -41,7 +41,8 @@ export class PreliminaryJudgingDataService implements DataService<PreliminaryJud
   }
 
   async createData(data: PreliminaryJudgingData): Promise<void> {
-    await window.db.execute('INSERT INTO PreliminaryJudging (TeamID, ExpertID, Score) VALUES (?, ?, ?);', [
+    await window.db.execute('INSERT INTO PreliminaryJudging (RecordID, TeamID, ExpertID, Score) VALUES (?, ?, ?, ?);', [
+      data.RecordID,
       data.TeamID,
       data.ExpertID,
       data.Score,

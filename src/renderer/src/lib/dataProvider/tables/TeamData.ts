@@ -46,7 +46,8 @@ export class TeamDataService implements DataService<TeamData> {
   }
 
   async createData(data: TeamData): Promise<void> {
-    await window.db.execute('INSERT INTO Team (TeamName, University, TrackType, SelectedTopicID) VALUES (?, ?, ?, ?);', [
+    await window.db.execute('INSERT INTO Team (TeamID, TeamName, University, TrackType, SelectedTopicID) VALUES (?, ?, ?, ?, ?);', [
+      data.TeamID,
       data.TeamName,
       data.University,
       data.TrackType,

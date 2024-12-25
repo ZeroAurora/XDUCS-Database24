@@ -45,7 +45,8 @@ export class FinalJudgingDataService implements DataService<FinalJudgingData> {
   }
 
   async createData(data: FinalJudgingData): Promise<void> {
-    await window.db.execute('INSERT INTO FinalJudging (TeamID, ExpertID, Score) VALUES (?, ?, ?);', [
+    await window.db.execute('INSERT INTO FinalJudging (RecordID, TeamID, ExpertID, Score) VALUES (?, ?, ?, ?);', [
+      data.RecordID,
       data.TeamID,
       data.ExpertID,
       data.Score,
