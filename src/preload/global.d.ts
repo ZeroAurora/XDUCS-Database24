@@ -1,7 +1,7 @@
-import type { db, importExcel } from './index'
+import type { db } from './index'
 
 declare global {
   interface Window {
-    db: typeof db,
+    db: typeof db
   }
 }
