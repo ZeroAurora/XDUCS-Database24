@@ -65,7 +65,7 @@ function onDeleteDone() {
       <NButton class="flex-auto" ghost type="primary" @click="onImportCsvClick">
         Import CSV
       </NButton>
-      <NButton class="flex-auto" ghost type="primary" @click="showUpdateBox = true">
+      <NButton class="flex-auto" ghost type="primary" @click="showCreateBox = true">
         Create
       </NButton>
       <NButton class="flex-auto" ghost type="primary" :disabled="selectedId === ''" @click="showUpdateBox = true">
